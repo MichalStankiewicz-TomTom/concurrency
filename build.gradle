@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id("io.freefair.lombok") version "8.12"
 }
 
 group = 'com.tomtom.orbis'
@@ -10,6 +11,9 @@ repositories {
 }
 
 dependencies {
+    implementation 'ch.qos.logback:logback-classic:1.5.16'
+    implementation("com.google.guava:guava:33.4.0-jre")
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
