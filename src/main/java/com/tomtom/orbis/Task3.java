@@ -31,6 +31,7 @@ public class Task3 {
             log.info("Counter: {}", counter.getCount());
             Utils.sleep(500);
         }
+        executor.shutdown();
         log.info("Counter: {}", counter.getCount());
         log.info("Elapsed time: {}", stopwatch.stop());
     }

@@ -5,13 +5,15 @@ import com.tomtom.orbis.counters.CounterAtomic;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.stream.Stream;
 
 @Slf4j
-public class Task5 {
+public class Task7 {
     public static void main(String[] args) {
         Stopwatch stopwatch = Stopwatch.createStarted();
         List<Integer> integers = Stream.iterate(0, i -> i + 1)
@@ -20,12 +22,19 @@ public class Task5 {
 
         log.info("Integers: {}", integers);
 
+        ThreadFactory factory = r -> {
+            Thread t = new Thread(r);
+            t.setUncaughtExceptionHandler((thread, throwable) ->
+                    log.error("Uncaught exception: {}", throwable.getMessage()));
+            return t;
+        };
+
         Counter counter = new CounterAtomic();
-        ExecutorService executor = Executors.newFixedThreadPool(30);
-        List<Integer> results = new ArrayList<>();
+        ExecutorService executor = Executors.newFixedThreadPool(30, factory);
+        List<Integer> results = Collections.synchronizedList(new ArrayList<>());
         for (int i : integers) {
-            executor.submit(() -> {
-                results.add(Computable.fast(integers.get(i)));
+            executor.execute(() -> {
+                results.add(Computable.failing(integers.get(i)));
                 counter.increment();
             });
         }
