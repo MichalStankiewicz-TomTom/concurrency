@@ -2,6 +2,9 @@ package com.tomtom.orbis.counters;
 
 import com.tomtom.orbis.Counter;
 
+import javax.annotation.concurrent.ThreadSafe;
+
+@ThreadSafe
 public class CounterSynchronized implements Counter {
 
     private int count = 0;

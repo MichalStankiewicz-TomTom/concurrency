@@ -1,5 +1,8 @@
 package com.tomtom.orbis;
 
+import javax.annotation.concurrent.NotThreadSafe;
+
+@NotThreadSafe
 public class CounterBasic implements Counter {
 
     private volatile int count = 0;

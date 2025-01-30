@@ -2,8 +2,10 @@ package com.tomtom.orbis.counters;
 
 import com.tomtom.orbis.Counter;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@ThreadSafe
 public class CounterAtomic implements Counter {
 
     private final AtomicInteger count = new AtomicInteger(0);
