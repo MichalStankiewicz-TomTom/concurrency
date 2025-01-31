@@ -22,5 +22,6 @@ public class CounterSynchronized implements Counter {
     /*
     On what object does the synchronized keyword lock?
     Is it fair or unfair lock? What is faster?
+    Is it compatible with virtual threads?
      */
 }

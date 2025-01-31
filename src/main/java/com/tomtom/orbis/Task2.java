@@ -39,7 +39,7 @@ public class Task2 {
             log.info("Counter: {}", counter.getCount());
             Utils.sleep(500);
         }
-        log.info("Counter: {}", counter.getCount());
+        log.info("Final counter: {}", counter.getCount());
         log.info("Elapsed time: {}", stopwatch.stop());
     }
 

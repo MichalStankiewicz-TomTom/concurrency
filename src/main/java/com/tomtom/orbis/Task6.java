@@ -36,12 +36,12 @@ public class Task6 {
             Utils.sleep(500);
         }
         executor.shutdown();
-        log.info("Counter: {}", counter.getCount());
+        log.info("Final counter: {}", counter.getCount());
         if (results.size() != counter.getCount()) {
-            log.error("Results: {}", results.size());
-        } else {
-            log.info("Results: {}", results);
+            log.error("counter != results.size()");
         }
+        log.info("Results: {}", results);
+        log.info("Results size: {}", results.size());
         log.info("Elapsed time: {}", stopwatch.stop());
     }
 

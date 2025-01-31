@@ -1,7 +1,10 @@
 package com.tomtom.orbis;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.atomic.AtomicLong;
 
+@Slf4j
 public class Computable {
 
     private static final AtomicLong counter = new AtomicLong(0);
@@ -21,7 +24,7 @@ public class Computable {
         long startTime = System.nanoTime();
 
         int result = 0;
-        while (System.nanoTime() - startTime < 1_000_000_000L) {
+        while (System.nanoTime() - startTime < 1_000_000_000L && !Thread.currentThread().isInterrupted()) {
             result += (input * 31) ^ (result + 7);
         }
 
@@ -29,7 +32,12 @@ public class Computable {
     }
 
     public static int ioExtensive(int input) {
-        Utils.sleep(1000);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            log.warn("Thread interrupted");
+        }
         return input * 31 ^ 7;
     }
 

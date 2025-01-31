@@ -32,7 +32,7 @@ public class Task3 {
             Utils.sleep(500);
         }
         executor.shutdown();
-        log.info("Counter: {}", counter.getCount());
+        log.info("Final counter: {}", counter.getCount());
         log.info("Elapsed time: {}", stopwatch.stop());
     }
 

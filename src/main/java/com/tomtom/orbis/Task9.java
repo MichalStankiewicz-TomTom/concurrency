@@ -16,7 +16,7 @@ public class Task9 {
     public static void main(String[] args) throws InterruptedException {
         Stopwatch stopwatch = Stopwatch.createStarted();
         List<Integer> integers = Stream.iterate(0, i -> i + 1)
-                .limit(10_000)
+                .limit(100)
                 .toList();
 
         log.info("Integers: {}", integers);
@@ -26,7 +26,7 @@ public class Task9 {
         List<Integer> results = Collections.synchronizedList(new ArrayList<>());
         for (int i : integers) {
             executor.submit(() -> {
-                results.add(Computable.fast(integers.get(i)));
+                results.add(Computable.ioExtensive(integers.get(i)));
                 counter.increment();
             });
         }
@@ -35,13 +35,12 @@ public class Task9 {
 //            log.info("Counter: {}", counter.getCount());
 //            Utils.sleep(500);
 //        }
-        log.info("Counter: {}", counter.getCount());
+        log.info("Final counter: {}", counter.getCount());
         if (results.size() != counter.getCount()) {
-            log.error("Results: {}", results.size());
-        } else {
-            log.info("Results: {}", results);
+            log.error("counter != results.size()");
         }
-        log.info("Counter: {}", counter.getCount());
+        log.info("Results: {}", results);
+        log.info("Results size: {}", results.size());
         log.info("Elapsed time: {}", stopwatch.stop());
     }
 

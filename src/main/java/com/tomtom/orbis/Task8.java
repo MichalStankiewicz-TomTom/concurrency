@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 @Slf4j
@@ -39,7 +40,9 @@ public class Task8 {
             } catch (Exception e) {
                 log.error("Exception: {}", e.getMessage());
                 executor.shutdownNow();
-                executor.awaitTermination(10, java.util.concurrent.TimeUnit.SECONDS);
+                if (!executor.awaitTermination(10, TimeUnit.SECONDS)) {
+                    log.error("Executor did not terminate in the specified time.");
+                }
             }
         }
 
@@ -47,12 +50,12 @@ public class Task8 {
             log.info("Counter: {}", counter.getCount());
             Utils.sleep(500);
         }
-        log.info("Counter: {}", counter.getCount());
+        log.info("Final counter: {}", counter.getCount());
         if (results.size() != counter.getCount()) {
-            log.error("Results: {}", results.size());
-        } else {
-            log.info("Results: {}", results);
+            log.error("counter != results.size()");
         }
+        log.info("Results: {}", results);
+        log.info("Results size: {}", results.size());
         log.info("Elapsed time: {}", stopwatch.stop());
     }
 
