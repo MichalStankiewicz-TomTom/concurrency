@@ -26,7 +26,7 @@ public class Task6 {
         List<Integer> results = Collections.synchronizedList(new ArrayList<>());
         for (int i : integers) {
             executor.submit(() -> {
-                results.add(Computable.failing(integers.get(i)));
+                results.add(Computable.failing(integers.get(i))); // failing method
                 counter.increment();
             });
         }

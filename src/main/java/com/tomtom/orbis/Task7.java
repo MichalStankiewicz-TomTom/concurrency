@@ -33,7 +33,7 @@ public class Task7 {
         ExecutorService executor = Executors.newFixedThreadPool(30, factory);
         List<Integer> results = Collections.synchronizedList(new ArrayList<>());
         for (int i : integers) {
-            executor.execute(() -> {
+            executor.submit(() -> {
                 results.add(Computable.failing(integers.get(i)));
                 counter.increment();
             });
