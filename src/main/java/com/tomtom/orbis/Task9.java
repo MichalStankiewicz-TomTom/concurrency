@@ -26,7 +26,7 @@ public class Task9 {
         List<Integer> results = Collections.synchronizedList(new ArrayList<>());
         for (int i : integers) {
             executor.submit(() -> {
-                results.add(Computable.ioExtensive(integers.get(i)));
+                results.add(Computable.ioIntensive(integers.get(i)));
                 counter.increment();
             });
         }

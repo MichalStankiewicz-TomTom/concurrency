@@ -20,12 +20,10 @@ public class Task2 {
         Counter counter = new CounterBasic();
         List<Thread> threads = new ArrayList<>(integers.size());
         for (int i : integers) {
-            Thread thread = new Thread() {
-                public void run() {
-                    log.info("result: {}", Computable.computeExtensive(integers.get(i)));
-                    counter.increment();
-                }
-            };
+            Thread thread = new Thread(() -> {
+                log.info("result: {}", Computable.computeIntensive(integers.get(i)));
+                counter.increment();
+            });
             thread.setName("Test-thread-" + i);
             thread.setDaemon(true);
             threads.add(thread);

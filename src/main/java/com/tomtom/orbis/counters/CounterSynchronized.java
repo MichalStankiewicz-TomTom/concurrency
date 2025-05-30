@@ -24,4 +24,7 @@ public class CounterSynchronized implements Counter {
     Is it fair or unfair lock? What is faster?
     Is it compatible with virtual threads?
      */
+
+    // uses object header (12 bytes)
+    // uses ObjectMonitor for synchronization instead of AbstractQueuedSynchronizer (AQS)
 }

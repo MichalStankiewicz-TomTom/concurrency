@@ -49,4 +49,6 @@ public class CounterLock implements Counter {
     3. tryLock(long time, TimeUnit unit)
     4. lockInterruptibly()
      */
+
+    // uses AbstractQueuedSynchronizer (AQS) for lock management
 }

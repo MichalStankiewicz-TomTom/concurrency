@@ -21,7 +21,7 @@ public class Task1 {
         int counter = 0;
         for (int i = 0; i < integers.size(); i++) {
             counter++;
-            results.add(Computable.computeExtensive(integers.get(i)));
+            results.add(Computable.computeIntensive(integers.get(i)));
         }
 
         log.info("Counter: {}", counter);

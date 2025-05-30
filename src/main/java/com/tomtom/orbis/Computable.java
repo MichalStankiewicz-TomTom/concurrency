@@ -20,7 +20,7 @@ public class Computable {
         return input;
     }
 
-    public static int computeExtensive(int input) {
+    public static int computeIntensive(int input) {
         long startTime = System.nanoTime();
 
         int result = 0;
@@ -31,7 +31,7 @@ public class Computable {
         return result;
     }
 
-    public static int ioExtensive(int input) {
+    public static int ioIntensive(int input) {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

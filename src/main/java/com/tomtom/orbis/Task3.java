@@ -22,7 +22,7 @@ public class Task3 {
         ExecutorService executor = Executors.newFixedThreadPool(30);
         for (int i : integers) {
             executor.submit(() -> {
-                log.info("result: {}", Computable.computeExtensive(integers.get(i)));
+                log.info("result: {}", Computable.computeIntensive(integers.get(i)));
                 counter.increment();
             });
         }
